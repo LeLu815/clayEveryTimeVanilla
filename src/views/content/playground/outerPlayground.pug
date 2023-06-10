@@ -1,0 +1,7 @@
+extends ../../base.pug
+include ../../mixins/outerContentList.pug
+
+block content 
+  each playground in playgroundList
+    +outerContentList(playground)
+    hr

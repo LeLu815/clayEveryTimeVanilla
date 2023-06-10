@@ -1,0 +1,15 @@
+extends ../base.pug
+
+block content 
+  form(method="post")
+    div
+      span 아이디
+      input(type="email", name="email")
+    div
+      span 비밀번호
+      input(type='password', name="password")
+    button(type="submit") 로그인
+    a(href="/user/login/password") 비밀번호 찾기 
+
+block scripts 
+  script(src="") 

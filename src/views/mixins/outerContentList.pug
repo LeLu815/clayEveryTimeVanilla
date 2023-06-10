@@ -1,0 +1,12 @@
+mixin outerContentList(contentList)
+  ul 
+    li
+      a(href=`/content/playground/${contentList.newContentOwnName}`)
+        div.img-div
+          span 여기에는 이미지 넣을거임
+        div.text-div
+          div.text-title #{contentList.title}
+          div.text-main-content #{contentList.mainText}
+            span #{contentList.owner.displayName}
+            span #{contentList.comment}
+            span #{contentList.likes}

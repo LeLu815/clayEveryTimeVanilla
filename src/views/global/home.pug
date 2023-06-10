@@ -1,0 +1,22 @@
+extends ../base.pug
+
+
+block content 
+  div.img-div
+    img(src=`${dataUrl}`, alt="그냥").img-main
+  div.outer-content-div
+    div.content-div
+      div
+        span 자유게시판
+        a(href="/content/playground") 더보기
+      div 
+        each playgroundList in playgroundList_5
+          a(href=`/content/playground/${playgroundList.newContentOwnName}`) 
+            span #{playgroundList.owner.displayName}
+            span #{playgroundList.createdAt}
+            span #{playgroundList.likes} 좋아요
+            span #{playgroundList.comment} 댓글
+          hr
+
+block css 
+  link(rel="stylesheet", href="client/css/home.css")

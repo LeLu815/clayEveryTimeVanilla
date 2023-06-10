@@ -1,0 +1,11 @@
+extends ../base.pug
+include ../mixins/profileCommentitem.pug
+
+block content 
+  div
+    div 댓글
+    div 
+      form(action="/api/comment/delete/profile", method="post") 
+        button(type="submit") 삭제 
+        each userComment in userCommentList
+          +profileCommentitem(userComment)

@@ -1,0 +1,17 @@
+extends ../base.pug
+
+block content 
+  header 
+    div 여기는 이미지 들어갈 자리
+    section 
+      div 
+        span #{user.displayName}
+        a(href="/user/profile/edit") 프로필 편집 
+      div 
+        span #{user.email}
+        span 게시글 #{playgroundContentList.length}
+        span 댓글 #{playgroundCommentList.length}
+  div
+    a(href="/user/profile/content") 게시글
+    a(href="/user/profile/comment") 댓글
+  div

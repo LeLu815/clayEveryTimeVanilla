@@ -1,0 +1,30 @@
+extends ../../base.pug
+
+block content 
+  div.info
+  div.info-writer 
+    div.profile-img 이미지
+    div.profile-info #{queryPlaygroundContentData.owner.displayName}
+    div.created-at #{queryPlaygroundContentData.createdAt}
+  
+  div.info-report 신고
+
+  div.body #{queryPlaygroundContentData.title}
+  div.img 여기에 리얼 이미지 넣을거임
+  div.body #{queryPlaygroundContentData.mainText}
+
+  div.info-sub
+    div.info-sub-interaction
+      div.likes #{queryPlaygroundContentData.likes}
+      div.comment #{queryPlaygroundContentData.comment}
+    div.info-sub-comment
+      a(href=`/api/content/playground/${queryPlaygroundContentData.newContentOwnName}/like`).like-btn 좋아요
+      button(id=`${}`, onclick=``) 
+      a(href=`/content/playgroundComment/${queryPlaygroundContentData.newContentOwnName}`).comment-btn 댓글 달기
+      if queryPlaygroundContentData.owner.localId === loggedInUser.localId
+        form(action=`/api/content/delete/${queryPlaygroundContentData.newContentOwnName}`, method="post")
+          input(type="submit", value="삭제")
+        a(href=`/content/playground/${queryPlaygroundContentData.newContentOwnName}/edit`) 수정  
+  
+block scripts 
+  script(src="/client/js/likes/setLikes.js") 

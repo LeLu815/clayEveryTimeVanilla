@@ -1,0 +1,11 @@
+extends ../base.pug
+
+block content 
+  div 
+    div 계정 삭제
+    form(method="post") 
+      div 
+        span #{user.email}
+      div 
+        input(type="text", placeholder=`${user.email}`, name="deleteUserEmail")
+      input(type="submit", value="계정 삭제")

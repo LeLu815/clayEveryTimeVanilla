@@ -1,0 +1,11 @@
+mixin nestedCommentForm(nestedComment)
+  div(id=`${nestedComment.newNestedCommentOwnName}_nested_comment`)
+    div.playground-comment-obj-user-info
+      span 유저 이미지
+      span #{nestedComment.owner.displayName}
+    div.playground-comment-obj-text
+      span(id=`${nestedComment.newNestedCommentOwnName}_text`) #{nestedComment.nestedCommentText}
+      
+    if nestedComment.owner.localId === loggedInUser.localId
+      div
+        button(onclick=`onClickDeleteNestedComment('${nestedComment.commentOwnName}&${nestedComment.newNestedCommentOwnName}')`) 삭제

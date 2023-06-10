@@ -1,0 +1,11 @@
+extends ../base.pug
+include ../mixins/profileContentItem.pug
+
+block content 
+  div 
+    div 게시글
+    div
+      form(action="/api/content/delete/profile", method="post") 
+        button(type="submit") 삭제 
+        each userContent in userContentList
+          +profileContentItem(userContent)

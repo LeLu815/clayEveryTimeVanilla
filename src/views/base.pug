@@ -1,0 +1,42 @@
+doctype html
+html(lang="ko")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title clayTime
+    link(rel="stylesheet", href="/client/css/base.css") 
+    block css
+  body 
+    header 
+      nav 
+        div
+          a(href="/") 로고
+
+        div 
+          form(action="/", method="post") 
+            input(type="text" name="searchKeyword")
+
+        div
+          if loggedIn
+            a(href="/user/logout") 로그아웃
+            a(href="/user/profile") 프로필
+            a(href="/content/upload") 글쓰기 
+          
+          else 
+            a(href="/user/login") 로그인
+            a(href="/user/join") 회원가입
+            
+    div.main 
+      block content
+    footer
+      div 
+        a(href="http://") 국민대학교
+      hr
+      div 
+        a(href="http://") 개인정보처리방침
+        a(href="http://") 이용약관
+        a(href="http://") 커뮤니티이용규칙
+        a(href="http://") 공지사항
+        a(href="http://") 문의하기
+        a(href="http://") &copy; clayTime
+    block scripts

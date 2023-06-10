@@ -1,0 +1,48 @@
+extends ../base.pug
+
+block content 
+  main 
+    h1  설정
+    div 
+      article
+        form(method="post")  
+          div
+            span 프로필 편집
+          div 
+            div 프로필 사진 여기에
+            div 
+              div #{user.email}
+              div 프로필 사진 바꾸기
+          div 
+            aside 닉네임
+            input(type="text", name="displayName", value=`${user.displayName}`)
+          div 
+            aside 소개
+            textarea(name="introduce", cols="30", rows="10") #{userData.introduce}
+          div 
+            aside 성별 
+              div
+                aside 남자
+                if userData.gender==="m" 
+                  input(type="radio", name="gender", value="m", checked)
+                else 
+                  input(type="radio", name="gender", value="m")
+              div
+                aside 여자
+                if userData.gender==="w"
+                  input(type="radio", name="gender", value="w", checked)
+                else 
+                  input(type="radio", name="gender", value="w")
+              div
+                aside 비공개
+                if userData.gender==="n"
+                  input(type="radio", name="gender", value="n", checked)
+                else 
+                  input(type="radio", name="gender", value="n")
+                  
+          button(type="submit") 제출
+
+          div 
+            a(href="/user/profile/edit/pasword") 비밀번호 변경 
+            a(href="/user/profile/edit/withdrawal") 탈퇴
+        
