@@ -8,38 +8,37 @@ block content
   div.playground-comment-section 
     if playgroundCommentList.length 
       each playgroundComment in playgroundCommentList.reverse() 
-        div(class="playground-comment-obj", id=`${playgroundComment.newCommentOwnName}_comment_div`)
+        div(class="playground-comment-obj", id=`${playgroundComment.commentId}_comment_div`)
           div.playground-comment-obj-user-info
             span 유저 이미지
             span #{playgroundComment.owner.displayName}
           div.playground-comment-obj-text
-            span(id=`${playgroundComment.newCommentOwnName}_text`) #{playgroundComment.commentText}
+            span(id=`${playgroundComment.commentId}_text`) #{playgroundComment.main}
 
-          div(id=`${playgroundComment.newCommentOwnName}_edit_div`) 
-            input(type="text", name="commentText", id=`${playgroundComment.newCommentOwnName}_edit_input`)
+          div(id=`${playgroundComment.commentId}_edit_div`) 
+            input(type="text", name="commentText", id=`${playgroundComment.commentId}_edit_input`)
             div 
-              input(type="submit", value="수정", onclick=`onClickEditComment('${playgroundComment.newCommentOwnName}')`)
-              input(type="button", value="취소", onclick=`onClickEditHideComment('${playgroundComment.newCommentOwnName}')`)
-          div(id=`${playgroundComment.newCommentOwnName}_nested_div`) 
-            input(type="text", name="commentText", id=`${playgroundComment.newCommentOwnName}_nested_input`)
+              input(type="submit", value="수정", onclick=`onClickEditComment('${playgroundComment.commentId}')`)
+              input(type="button", value="취소", onclick=`onClickEditHideComment('${playgroundComment.commentId}')`)
+          div(id=`${playgroundComment.commentId}_nested_div`) 
+            input(type="text", name="commentText", id=`${playgroundComment.commentId}_nested_input`)
             div 
-              input(type="submit", value="답글", onclick=`onClickNestedComment('${playgroundComment.contentOwnName}&${playgroundComment.newCommentOwnName}')`)
-              input(type="button", value="취소", onclick=`onClickNestedHideComment('${playgroundComment.newCommentOwnName}')`)
+              input(type="submit", value="답글", onclick=`onClickNestedComment('${playgroundComment.docString}')`)
+              input(type="button", value="취소", onclick=`onClickNestedHideComment('${playgroundComment.commentId}')`)
 
           div.playground-comment-obj-sub-info
             span #{playgroundComment.createdAt} 
-            a(href=`/api/content/playground/${playgroundComment.newCommentOwnName}/like`) 좋아요 #{playgroundComment.likes ? playgroundComment.likes : ''}
-            button(type="button", onclick=`onClickShowNestedComment('${playgroundComment.newCommentOwnName}')`) 답글 달기
+            button(type="button", onclick=`onClickShowNestedComment('${playgroundComment.commentId}')`) 답글 달기
 
           button 답글 보기 (#{playgroundComment.nestedComment})
-          div(class="playground-comment-nested-section", id=`${playgroundComment.newCommentOwnName}_nested_section`)
-              each playgroundNestedComment of playgroundComment.nestedCommentList
-                +nestedCommentForm(playgroundNestedComment)
+          div(class="playground-comment-nested-section", id=`${playgroundComment.commentId}_nested_section`)
+              //- each playgroundNestedComment of playgroundComment.nestedCommentList
+              //-   +nestedCommentForm(playgroundNestedComment)
             
           if playgroundComment.owner.localId === loggedInUser.localId
             div
-              button(type="button", onclick=`onClickShowEditComment('${playgroundComment.newCommentOwnName}')`) 수정
-              button(type="button", onclick=`onClickDeleteComment('${playgroundComment.contentOwnName}&${playgroundComment.newCommentOwnName}')`) 삭제
+              button(type="button", onclick=`onClickShowEditComment('${playgroundComment.commentId}')`) 수정
+              button(type="button", onclick=`onClickDeleteComment('${playgroundComment.docString}')`) 삭제
           hr
     else 
       h1 댓글이 없습니다. 

@@ -36,7 +36,10 @@ const onClickEditComment = async (data) => {
 };
 
 const onClickDeleteComment = async (data) => {
-  const [contentId, commentId] = data.split("&");
+  const [contentId, commentId] = data.split("/").filter((text) => {
+    console.log(text, text !== "" || text.length > 15);
+    return text !== "" && text.length > 15;
+  });
   try {
     const url = `/api/comment/delete/playground`;
     const response = await fetch(url, {

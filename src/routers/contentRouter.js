@@ -10,7 +10,11 @@ import {
   getPlaygroundComment,
   postPlaygroundComment,
 } from "../controllers/playgroundController.js";
-import { protectorMiddleware, publicOnlyMiddleware } from "../middleware.js";
+import {
+  protectorMiddleware,
+  publicOnlyMiddleware,
+  uploadImges,
+} from "../middleware.js";
 
 const contentRouter = express.Router();
 
@@ -18,7 +22,7 @@ contentRouter
   .route("/upload")
   .all(protectorMiddleware)
   .get(getContentUpload)
-  .post(postContentUpload);
+  .post(uploadImges.array("images"), postContentUpload);
 
 contentRouter.route("/playground").get(getPlayground);
 contentRouter.route("/playground/:id").get(getPlaygroundContent);

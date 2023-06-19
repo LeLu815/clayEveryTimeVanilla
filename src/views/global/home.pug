@@ -17,6 +17,15 @@ block content
             span #{playgroundList.likes} 좋아요
             span #{playgroundList.comment} 댓글
           hr
+      div
+        each myData in dataList
+          a(href=`/content/playground/${myData.contentId}`) 
+            span #{myData.owner.displayName}
+            span #{myData.createAt}
+            span #{myData.likedUserList.length} 좋아요
+            span #{myData.commentsCount} 댓글
+          hr
+        
 
 block css 
   link(rel="stylesheet", href="client/css/home.css")

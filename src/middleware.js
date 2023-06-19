@@ -1,4 +1,5 @@
-// import multer from "multer";
+import multer from "multer";
+
 import { app } from "./firebase/config.js";
 import { getAuth } from "firebase/auth";
 
@@ -35,3 +36,10 @@ export const publicOnlyMiddleware = (req, res, next) => {
     return res.redirect("/");
   }
 };
+
+export const uploadImges = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB 제한 (필요에 따라 조정 가능)
+  },
+});

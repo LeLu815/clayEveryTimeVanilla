@@ -1,6 +1,5 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import multer from "multer";
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -24,13 +23,9 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const storage = getStorage(app);
-// export const backgroundImg = ref(storage, "background/backgroud_1.jpg");
+export const storage = getStorage(app, "gs://clayeverytimevanilla.appspot.com");
+export const mystorage = getStorage(app);
 export const backgroundImg = ref(
-  storage,
+  mystorage,
   "gs://clayeverytimevanilla.appspot.com/background/backgroud_1.jpg"
 );
-
-// export const appFireStore = getFirestore(app);
-// export const appAuth = getAuth();
-// export const timestamp = Timestamp;

@@ -50,7 +50,10 @@ const onClickShowNestedComment = (data) => {
 };
 
 const onClickNestedComment = async (data) => {
-  const [contentId, commentId] = data.split("&");
+  const [contentId, commentId] = data.split("/").filter((text) => {
+    console.log(text, text !== "" || text.length > 15);
+    return text !== "" && text.length > 15;
+  });
   const outerDiv = document.getElementById(`${commentId}_nested_div`);
   const inputText = document.getElementById(`${commentId}_nested_input`);
   const nestedSection = document.getElementById(`${commentId}_nested_section`);

@@ -23,6 +23,8 @@ const playgroundBody = collection(playgroundRef, "body");
 const playgroundComment = collection(playgroundRef, "comment");
 const playgroundNestedComment = collection(playgroundRef, "nestedComment");
 
+import { createData, getDatasFirst } from "../firebase/firestoreFunctions.js";
+
 export const home = async (req, res) => {
   // const dataUrl = await getDownloadURL(backgroundImg);
   const dataUrl =
@@ -40,6 +42,11 @@ export const home = async (req, res) => {
   //   const data = doc.data();
   //   playgroundList.push(data);
   // });
+  const { dataList, lastSnapShot } = await getDatasFirst(
+    "playground",
+    "createdAt",
+    5
+  );
   const q = query(playgroundBody, orderBy("createdAt"), limit(5));
   const playgroundList_5 = [];
   const queryPlayground_5 = await getDocs(q);
@@ -47,7 +54,8 @@ export const home = async (req, res) => {
     const data = doc.data();
     playgroundList_5.push(data);
   });
-  return res.render("./global/home", { dataUrl, playgroundList_5 });
+  console.log(dataList);
+  return res.render("./global/home", { dataUrl, playgroundList_5, dataList });
 };
 
 export const search = () => {};
